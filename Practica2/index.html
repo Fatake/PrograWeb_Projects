@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 2</title>
+</head>
+<body>
+    <center>
+        <h1>Practica 2 - Formularios</h1>
+        <h2>Paulo Cesar Ruiz Lozano</h2>
+        <br>
+
+        <form action="http://www.example.com/login.php"> 
+            <p>Username:
+            <input type="text" name="username" size="15" 
+            maxlength="30" />
+            </p>
+            <p>Password:
+            <input type="password" name="password" size="15" 
+            maxlength="30" />
+            </p> 
+
+            <p>What did you think of this gig?</p>
+            <textarea name="comments" cols="20" rows="4">Enter 
+            your comments...</textarea>
+
+
+            <p>Please select your favorite genre:
+                <br />
+                <input type="radio" name="genre" value="rock" 
+                checked="checked" /> Rock
+                <input type="radio" name="genre" value="pop" />
+                Pop
+                <input type="radio" name="genre" value="jazz" />
+                Jazz
+            </p>
+
+            <p>Please select your favorite music service(s):
+            <br />
+            <input type="checkbox" name="service" 
+            value="itunes" checked="checked" /> iTunes
+            <input type="checkbox" name="service" 
+            value="lastfm" /> Last.fm
+            <input type="checkbox" name="service" 
+            value="spotify" /> Spotify
+            </p>
+
+            <p>What device do you listen to music on?</p> 
+            <select name="devices">
+                <option value="ipod">iPod</option>
+                <option value="radio">Radio</option> 
+                <option value="computer">Computer</option> 
+            </select>
+
+            <p>Do you play any of the following instruments?
+                (You can select more than one option by holding 
+                down control on a PC or command key on a Mac 
+                while selecting different options.)</p>
+                <select name="instruments" size="3" 
+                multiple="multiple">
+                <option value="guitar" selected="selected"> 
+                Guitar</option>
+                <option value="drums">Drums</option> 
+                <option value="keyboard"
+                selected="selected">Keyboard</option> 
+                <option value="bass">Bass</option>
+                </select>
+        </form>
+        <br>
+        <form action="http://www.example.com/upload.php" 
+        method="post">
+            <p>Upload your song in MP3 format:</p>
+            <input type="file" name="user-song" /><br /> 
+            <input type="submit" value="Upload" />
+
+            <p>Subscribe to our email list:</p>
+            <input type="text" name="email" />
+            <input type="image" src="img/suscribe.png" 
+            width="100" height="20" />
+        </form>
+
+        <button><img src="images/add.gif" alt="add"
+            width="10" height="10" /> Add</button> 
+            <input type="hidden" name="bookmark"
+            value="lyrics" />
+    </center>
+</body>
+</html>
