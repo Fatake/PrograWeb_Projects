@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Practica 5</title>
+    <script>
+    
+        /**
+         * Set the information about your questions here. The correct answer string needs to match
+         * the correct choice exactly, as it does string matching. (case sensitive)
+         *
+         */
+        var quiz = [
+            {
+                "question"		: 	"Q1: ¿Cual es el objetivos dee ls W3E?",
+                "choices"		: 	[
+                                        "Uniformar las especificaciones técnicas de una pagina web",
+                                        "Generar estres a los programadores",
+                                        "Esta no es",
+                                        "Esta tampoco"
+                                    ],
+                "correct"		: 	"Uniformar las especificaciones técnicas de una pagina web",
+                "explanation"	: 	"El objetivo del W3C es <strong>uniformar las especificaciones técnicas y establecer directrices</strong>  para el desarrollo de tecnologías web",
+                
+            },
+            {
+                "question"		: 	"Q2: ¿La W3E ofrece estandares de calidad para citios web?",
+                "choices"		: 	[
+                                        "Si",
+                                        "No",
+                                    ],
+                "correct"		: 	"Si",
+                "explanation"	: 	"El W3C ofrece recomendaciones. Tales recomendaciones incluyen estándares tecnológicos",
+            },
+            {
+                "question"		: 	"Q3: What event began on April 12, 1861?",
+                "choices"		: 	[
+                                        "First manned flight",
+                                        "California became a state",
+                                        "American Civil War began",
+                                        "Declaration of Independence"
+                                    ],
+                "correct"		: 	"American Civil War began",
+                "explanation"	: 	"South Carolina came under attack when Confederate soldiers attacked Fort Sumter. The war lasted until April 9th 1865.",
+            },
+        
+        ];
+            
+        var currentQuestion = 0;
+        var score = 0;
+        var askingQuestion = true;
+            
+        function loadQuestion(){
+            var radioButton;
+
+            document.getElementById('question').innerHTML = quiz[currentQuestion]["question"];
+            document.getElementById('content').innerHTML = "";
+            
+            for(var i=0; i < quiz[currentQuestion]["choices"].length; i++){
+                radioButton  = document.createElement('input');
+                radioButton.type = 'radio';
+                radioButton.name = 'quiz';
+                radioButton.id = 'choice'+ (i+1);
+                radioButton.value = quiz[currentQuestion]["choices"][i];
+    
+                var label = document.createElement('label');
+                label.setAttribute('for','choice'+ (i+1));
+                label.innerHTML = quiz[currentQuestion]["choices"][i];
+                
+                document.getElementById('content').appendChild(document.createElement('br'));
+                document.getElementById('content').appendChild(label);
+                document.getElementById('content').appendChild(radioButton);
+            }
+
+            if(currentQuestion == 0){
+                document.getElementById('score').innerHTML = '<p>score: 0 correctas de ' + quiz.length +' posibles</p>';
+            }
+        }
+        
+        function checkAnswer(){
+            if(askingQuestion){
+                document.getElementById('check').innerHTML = 'Siguiente Pregunta';
+                askingQuestion = false;
+
+                var userpick;
+                var correctIndex;
+                var radios = document.getElementsByName('quiz');
+                for(var i=0; i < radios.length; i++){
+                    if(radios[i].checked){ 
+                        userpick = radios[i].value;
+                    }
+                    if(radios[i].value == quiz[currentQuestion]["correct"]){
+                        correctIndex = i;
+                    }
+                }
+
+                if(userpick == quiz[currentQuestion]["correct"]){
+                    score++;
+                    document.getElementsByTagName('label')[correctIndex].style.color = "green";
+                    document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
+                    document.getElementById('explanation').innerHTML = "<h3>Correcto!</h3>";
+                } else {
+                    document.getElementsByTagName('label')[correctIndex].style.color = "red";
+                    document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
+                    document.getElementById('explanation').innerHTML = "<h3>Incorrecto</h3>";
+                }
+
+                document.getElementById('explanation').innerHTML += '<p>' + quiz[currentQuestion]["explanation"] + '</p>';
+                document.getElementById('score').innerHTML = '<p>score: '+ score +' correctas de ' + quiz.length +' posibles</p>';
+            } else {
+
+                askingQuestion = true;
+                
+                document.getElementById('check').innerHTML = 'Enviar Respuesta';
+                document.getElementById('explanation').innerHTML = "";
+    
+                if(currentQuestion < quiz.length - 1){
+                    currentQuestion++;
+                    loadQuestion();
+                } else {
+                    showFinalResults();
+                }
+            }
+        }
+        
+        function showFinalResults(){
+            document.getElementById('content').innerHTML = '<h2>Has terminado el quiz</h2>';
+            document.getElementById('content').innerHTML += '<p>Tus resultados:</p>';
+            document.getElementById('content').innerHTML += '<h2>' + score + ' de ' + quiz.length + ' preguntas, ' + Math.round(score/quiz.length * 100) + '% correcto</h2>';
+            
+            var button = document.getElementById('check');
+            button.parentNode.removeChild(button); 
+            document.getElementById('question').innerHTML = "";    
+        }
+        
+        window.addEventListener('load', (event) => {
+            loadQuestion();
+        });
+
+        </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Practica 5</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Portada</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="W3E.html">WE3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Formulario.html">Formulario
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="frame">
+		<h1>Quiz W3E</h1>
+		<div id="score"><p>score: 0 correctas de 0 posibles</p></div>
+        <br>
+		<h2 id="question">Question here</h2>
+		<div id="content">
+
+		</div>
+        <br>
+        <div id="response">
+			<div id="explanation"></div>
+		</div>
+        <br>
+		<button id="check" onclick="checkAnswer()">Enviar Respuesta</button>
+		
+	</div>
+
+</body>
+</html>
