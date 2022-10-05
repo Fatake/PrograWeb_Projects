@@ -10,30 +10,18 @@
 </head>
 <body>
     <div class="FormAdd">
-        <h2>Agregar Equipo</h2> 
-        <table>
-            <tr>
-                <td>
-                    <label>Nombre:
-                    <input id="nuevoNombreEquipo" type="text"/></label> 
-                </td>
-                <td>
-                    <button class="btn btn-primary" 
-                    onclick="updateTeamsTable()">Añair equipo</button>
-                </td>
-              </tr>
-            </tr>
-        </table>
+        <button class="btn btn-primary" 
+        onclick="updateTeamsTable()">Generar Ciclistas</button>
     </div>
 
     <hr>
 
-    <div class="TeamsNames">
-        <h2>Equipos</h2>
+    <div class="CiclistasNames">
+        <h2>Ciclistas</h2>
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="row">Nombre del equipo</th>
+                    <th scope="row">Nombre</th>
                 </tr>
             </thead>
             <tbody id="TablaListaEquipos">
@@ -44,7 +32,7 @@
     <hr>
 
     <div class="">
-        <button class="btn btn-primary" onclick="Jugar()">-- Jugar !--</button>
+        <button class="btn btn-primary" onclick="CalcularTiempos()">-- Calcula Timpos !--</button>
     </div>
 
     <hr>
